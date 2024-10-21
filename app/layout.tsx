@@ -8,8 +8,8 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import "./globals.css";
 import { ThemeProvider } from "@/context/themeProvider";
+import "./globals.css";
 
 
 const geistSans = localFont({
@@ -39,10 +39,10 @@ const inter = Inter({
 });
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-spaceGrotesk",
-});
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-spaceGrotesk'
+})
 
 export default function RootLayout({
   children,
