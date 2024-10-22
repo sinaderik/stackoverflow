@@ -5,8 +5,9 @@ module.exports = {
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx,css}",
     "./src/**/*.{ts,tsx}",
+    "./styles/*.{css}",
   ],
   theme: {
     container: {
@@ -73,8 +74,6 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
-  },  
-  
+  },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-}
-
+};
