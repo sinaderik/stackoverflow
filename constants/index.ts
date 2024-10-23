@@ -7,7 +7,7 @@ export const themes = [
   { value: "system", label: "System", icon: "/assets/icons/computer.svg" },
 ];
 
-export const sidebarLinks:SidebarLink = [
+export const sidebarLinks:SidebarLink[] = [
   {
     imgURL: "/assets/icons/home.svg",
     route: "/",
