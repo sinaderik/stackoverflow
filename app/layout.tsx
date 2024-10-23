@@ -53,12 +53,12 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <ClerkProvider>
           <ThemeProvider>
-            <SignedOut>
+            {/* <SignedOut>
               <SignInButton />
             </SignedOut>
             <SignedIn>
               <UserButton />
-            </SignedIn>
+            </SignedIn> */}
             {children}
           </ThemeProvider>
         </ClerkProvider>
