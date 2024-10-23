@@ -41,7 +41,14 @@ const Theme = () => {
           {themes.map(item=>(
             <MenubarItem 
             key={item.value}
-            onClick={()=>{}}
+            onClick={()=>{
+                setMode(item.value)
+                if(item.value !== 'system'){
+                    localStorage.theme=item.value
+                }else{
+                    localStorage.removeItem("theme")
+                }
+            }}
             className="flex items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-400"
             >
                 <Image 
