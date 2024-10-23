@@ -1,8 +1,7 @@
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// import "../../../app/globals.css"
-// import "../../../styles/theme.css"
 
 const Navbar = () => {
   return (
@@ -15,9 +14,27 @@ const Navbar = () => {
           alt="stackoverflow"
         />
         <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
-          Stack <span className="text-primary-500 font-spaceGrotesk">Overflow</span>
+          Stack{" "}
+          <span className="text-primary-500 font-spaceGrotesk">Overflow</span>
         </p>
       </Link>
+      Global search
+      <div className="flex-between gap-5">
+        theme
+        <SignedIn>
+          <UserButton 
+            appearance={{
+              elements:{
+                avatarBox:'h-10 w-10'
+              },
+              variables:{
+                colorPrimary:'#ff7000'
+              }
+            }}
+          />
+        </SignedIn>
+        {/* mobile navigation */}
+      </div>
     </nav>
   );
 };
