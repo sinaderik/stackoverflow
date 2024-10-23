@@ -1,15 +1,22 @@
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
 import React from "react";
+
+const NavContent = () => {
+  return <p>nav content</p>;
+};
 
 const MobileNav = () => {
   return (
@@ -39,6 +46,22 @@ const MobileNav = () => {
             <span className="text-primary-500 font-spaceGrotesk">Overflow</span>
           </p>
         </Link>
+        <div>
+          <SheetClose asChild>
+            <NavContent />
+          </SheetClose>
+          <SignedOut>
+            <div className="flex flex-col gap-3">
+                <SheetClose>
+                    <Link href="/sign-in">
+                        <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                            <span className="primary-text-gradient">Sign in</span>
+                        </Button>
+                    </Link>
+                </SheetClose>
+            </div>
+          </SignedOut>
+        </div>
       </SheetContent>
     </Sheet>
   );
