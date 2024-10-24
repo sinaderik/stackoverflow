@@ -1,3 +1,4 @@
+"use client"
 import { Input } from "@/components/ui/input";
 import React from "react";
 
@@ -16,8 +17,9 @@ const GlobalSearch = () => {
         <Input
           type="text"
           placeholder="Search for anything..."
-          value=""
+          // value=""
           className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
+          onChange={()=>{}}
         />
       </div>
     </div>

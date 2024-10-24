@@ -27,6 +27,7 @@ const LeftSideBar = () => {
                 flex items-center justify-start bg-transparent gap-4 p-4
             `}
             href={item.route}
+            key={item.route}
           >
             <Image
               src={item.imgURL}
