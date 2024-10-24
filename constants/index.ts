@@ -1,4 +1,4 @@
-import { Questions, SidebarLink } from "@/types";
+import { Questions, SidebarLink, Tags } from "@/types";
 
 export const questions:Questions[]=[
   {id:"1",value:"How to Ensure Unique User Profile with ON CONFLICT in PostgreSQL Using Drizzle ORM?"},
@@ -7,7 +7,12 @@ export const questions:Questions[]=[
   {id:"4",value:"Node.js res.json() and res.send(), not working but still able to change status code"},
   {id:"5",value:"ReactJs or NextJs for begginers i ask for advice"},
 ]
-
+export const tags:Tags[]=[
+  {id:"1",value:"React",count:76},
+  {id:"2",value:"Javascript",count:45},
+  {id:"3",value:"Nextjs",count:24},
+  {id:"4",value:"Typescript",count:32},
+]
 export const themes = [
   { value: "light", label: "Light", icon: "/assets/icons/sun.svg" },
   { value: "dark", label: "Dark", icon: "/assets/icons/moon.svg" },

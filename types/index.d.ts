@@ -4,6 +4,11 @@ export type Questions={
   id:string,
   value:string,
 }
+export type Tags={
+  id:string,
+  value:string,
+  count:number,
+}
 export interface SidebarLink {
   imgURL: string;
   route: string;
