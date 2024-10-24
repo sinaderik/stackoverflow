@@ -1,5 +1,9 @@
 import { BADGE_CRITERIA } from "@/constants";
 
+export type Questions={
+  id:string,
+  value:string,
+}
 export interface SidebarLink {
   imgURL: string;
   route: string;
