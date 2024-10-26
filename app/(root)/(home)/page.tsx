@@ -1,7 +1,9 @@
+
 import React from 'react';
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import LocalSearch from "@/components/shared/search/LocalSearch";
+import Filter from "@/components/shared/filter/Filter";
 
 const Home = () => {
     return (
@@ -16,7 +18,7 @@ const Home = () => {
             </div>
             <div className="flex flex-col sm:flex-row md:flex-col justify-between items-center gap-5 mt-11">
                 <LocalSearch />
-                <div className="text-dark100_light900">filters</div>
+                <Filter />
             </div>
         </>
     );
