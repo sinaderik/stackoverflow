@@ -18,7 +18,7 @@ const GlobalSearch = () => {
           type="text"
           placeholder="Search for anything..."
           // value=""
-          className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
+          className="paragraph-regular no-focus placeholder text-dark100_light900 background-light800_darkgradient border-none shadow-none outline-none"
           onChange={()=>{}}
         />
       </div>
