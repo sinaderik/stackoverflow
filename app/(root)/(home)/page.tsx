@@ -4,6 +4,8 @@ import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import Filter from "@/components/shared/filter/Filter";
+import {HomePageFilters} from "@/constants/filter";
+import HomeFilters from '@/components/home/HomeFilters';
 
 const Home = () => {
     return (
@@ -18,8 +20,14 @@ const Home = () => {
             </div>
             <div className="flex flex-col sm:flex-row md:flex-col justify-between items-center gap-5 mt-11">
                 <LocalSearch />
-                <Filter />
+                <Filter
+                filters={HomePageFilters}
+                otherClasses="min-h-[56px] sm:min-w-[170px]"
+                containerClasses="hidden max-md:flex"
+                />
+                
             </div>
+            <HomeFilters />
         </>
     );
 };
