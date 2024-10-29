@@ -19,7 +19,13 @@ const Home = () => {
                 </Link>
             </div>
             <div className="flex flex-col sm:flex-row md:flex-col justify-between items-center gap-5 mt-11">
-                <LocalSearch />
+                <LocalSearch 
+                    route="/"
+                    iconPosition="left"
+                    imgSrc="/assets/icons/search.svg"
+                    placeHolder="Search for questions"
+                    otherClasses="flex-1"
+                />
                 <Filter
                 filters={HomePageFilters}
                 otherClasses="min-h-[56px] sm:min-w-[170px]"
