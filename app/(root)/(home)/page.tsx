@@ -17,7 +17,7 @@ type HomePageQuestions = {
   createdAt: Date;
 }[];
 
-const questions:HomePageQuestions = [
+const questions: HomePageQuestions = [
   {
     id: 1,
     title: "How to open a link in a new Tab in NextJS?",
@@ -29,15 +29,18 @@ const questions:HomePageQuestions = [
     createdAt: new Date("2023-09-01T12:00:00.000Z"),
   },
   {
-    id:2,
-    title:"How to center a div?",
-    tags:[{_id:1,name:"css"},{_id:2,name:"html"}],
-    author:"Alex fi",
-    upvotes:"9",
-    views:"26",
-    answers:"4",
-    createdAt:new Date("2023-09-01T12:00:00.000Z")
-  }
+    id: 2,
+    title: "How to center a div?",
+    tags: [
+      { _id: 1, name: "css" },
+      { _id: 2, name: "html" },
+    ],
+    author: "Alex fi",
+    upvotes: "9",
+    views: "26",
+    answers: "4",
+    createdAt: new Date("2023-09-01T12:00:00.000Z"),
+  },
 ];
 
 const Home = () => {
@@ -67,9 +70,9 @@ const Home = () => {
       </div>
       <HomeFilters />
       <div className="mt-10 flex flex-col gap-6 w-full">
-        {questions.map(question=>(
-            "question"
-        ))} 
+        {questions.length > 0
+          ? questions.map((question) => "question")
+          : "No questions are found"}
       </div>
     </>
   );
