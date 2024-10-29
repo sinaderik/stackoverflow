@@ -2,15 +2,15 @@ import Link from "next/link";
 import React from "react";
 import RenderTag from "../shared/RenderTag";
 import Metric from "../shared/Metric";
-import { getTimestamp } from "@/lib/utils";
+import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 
 type props = {
   _id: string;
   title: string;
   tags: { _id: string; name: string }[];
   author: { _id: string; name: string; picture: string };
-  upvotes: string;
-  views: string;
+  upvotes: number;
+  views: number;
   answers: [];
   createdAt: Date;
 };
@@ -61,21 +61,21 @@ const QuestionCard = ({
         <Metric
           imgUrl="/assets/icons/like.svg"
           alt="upvote"
-          value={upvotes}
+          value={formatAndDivideNumber(upvotes)}
           title=" Votes"
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="answers"
-          value={answers.length}
-          title=" Votes"
+          value={formatAndDivideNumber(answers.length)}
+          title=" Answers"
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="views"
-          value={views}
+          value={formatAndDivideNumber(views)}
           title=" views"
           textStyles="small-medium text-dark400_light800"
         />

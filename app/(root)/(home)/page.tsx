@@ -13,8 +13,8 @@ type HomePageQuestions = {
   title: string;
   tags: { _id: string; name: string }[];
   author: { _id: string; name: string; picture: string };
-  upvotes: string;
-  views: string;
+  upvotes: number;
+  views: number;
   answers: [];
   createdAt: Date;
 }[];
@@ -25,8 +25,8 @@ const questions: HomePageQuestions = [
     title: "How to open a link in a new Tab in NextJS?",
     tags: [{ _id: "1", name: "next.js" }],
     author: { _id: "1", name: "John doe", picture: "john.jpg" },
-    upvotes: "14",
-    views: "35",
+    upvotes: 1500000,
+    views: 2000000,
     answers: [],
     createdAt: new Date("2024-10-01T12:00:00.000Z"),
   },
@@ -38,10 +38,10 @@ const questions: HomePageQuestions = [
       { _id: "2", name: "html" },
     ],
     author: { _id: "2", name: "alex fi", picture: "alex.jpg" },
-    upvotes: "9",
-    views: "26",
+    upvotes: 70000,
+    views: 140000,
     answers: [],
-    createdAt: new Date("2024-09-01T12:00:00.000Z"),
+    createdAt: new Date("2024-09number-01T12:00:00.000Z"),
   },
 ];
 
