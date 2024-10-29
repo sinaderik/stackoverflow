@@ -23,7 +23,7 @@ const Home = () => {
                 <Filter
                 filters={HomePageFilters}
                 otherClasses="min-h-[56px] sm:min-w-[170px]"
-                containerClasses="hidden max-md:flex"
+                containerClasses="hidden max-md:flex w-full"
                 />
                 
             </div>
