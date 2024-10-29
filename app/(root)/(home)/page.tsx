@@ -28,7 +28,7 @@ const questions: HomePageQuestions = [
     upvotes: "14",
     views: "35",
     answers: [],
-    createdAt: new Date("2023-09-01T12:00:00.000Z"),
+    createdAt: new Date("2024-10-01T12:00:00.000Z"),
   },
   {
     _id: "2",
@@ -41,7 +41,7 @@ const questions: HomePageQuestions = [
     upvotes: "9",
     views: "26",
     answers: [],
-    createdAt: new Date("2023-09-01T12:00:00.000Z"),
+    createdAt: new Date("2024-09-01T12:00:00.000Z"),
   },
 ];
 
