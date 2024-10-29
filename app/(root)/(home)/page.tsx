@@ -5,6 +5,7 @@ import LocalSearch from "@/components/shared/search/LocalSearch";
 import Filter from "@/components/shared/filter/Filter";
 import { HomePageFilters } from "@/constants/filter";
 import HomeFilters from "@/components/home/HomeFilters";
+import NoResult from "@/components/shared/NoResult";
 
 type HomePageQuestions = {
   id: number;
@@ -18,29 +19,29 @@ type HomePageQuestions = {
 }[];
 
 const questions: HomePageQuestions = [
-  {
-    id: 1,
-    title: "How to open a link in a new Tab in NextJS?",
-    tags: [{ _id: 1, name: "next.js" }],
-    author: "John doe",
-    upvotes: "14",
-    views: "35",
-    answers: "2",
-    createdAt: new Date("2023-09-01T12:00:00.000Z"),
-  },
-  {
-    id: 2,
-    title: "How to center a div?",
-    tags: [
-      { _id: 1, name: "css" },
-      { _id: 2, name: "html" },
-    ],
-    author: "Alex fi",
-    upvotes: "9",
-    views: "26",
-    answers: "4",
-    createdAt: new Date("2023-09-01T12:00:00.000Z"),
-  },
+//   {
+//     id: 1,
+//     title: "How to open a link in a new Tab in NextJS?",
+//     tags: [{ _id: 1, name: "next.js" }],
+//     author: "John doe",
+//     upvotes: "14",
+//     views: "35",
+//     answers: "2",
+//     createdAt: new Date("2023-09-01T12:00:00.000Z"),
+//   },
+//   {
+//     id: 2,
+//     title: "How to center a div?",
+//     tags: [
+//       { _id: 1, name: "css" },
+//       { _id: 2, name: "html" },
+//     ],
+//     author: "Alex fi",
+//     upvotes: "9",
+//     views: "26",
+//     answers: "4",
+//     createdAt: new Date("2023-09-01T12:00:00.000Z"),
+//   },
 ];
 
 const Home = () => {
@@ -72,7 +73,7 @@ const Home = () => {
       <div className="mt-10 flex flex-col gap-6 w-full">
         {questions.length > 0
           ? questions.map((question) => "question")
-          : "No questions are found"}
+          : <NoResult />}
       </div>
     </>
   );
