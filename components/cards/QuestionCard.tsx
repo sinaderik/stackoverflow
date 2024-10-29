@@ -1,10 +1,12 @@
 import Link  from "next/link";
 import React from "react";
+import RenderTag from "../shared/RenderTag";
+import Metric from "../shared/Metric";
 
 type props = {
   _id: string;
   title: string;
-  tags: { _id: number; name: string }[];
+  tags: { _id: string; name: string }[];
   author: { _id: string; name: string; picture: string };
   upvotes: string;
   views: string;
@@ -38,8 +40,32 @@ const QuestionCard = ({
       </div>
       <div className="mt-3.5 flex flex-wrap gap-2">
         {tags.map(tag=>(
-            <p>{tag.name}</p>
+            <RenderTag key={tag._id} _id={tag._id} name={tag.name}/>
         ))}
+      </div>
+
+      <div className="flex-between flex-wrap gap-3 mt-6 w-full">
+        <Metric 
+            imgUrl="/assets/icons/like.svg"
+            alt="upvote"
+            value={upvotes}
+            title=" Votes"
+            textStyles="small-medium text-dark-400_light800"
+        />
+        <Metric 
+            imgUrl="/assets/icons/message.svg"
+            alt="answers"
+            value={answers.length}
+            title=" Votes"
+            textStyles="small-medium text-dark-400_light800"
+        />
+        <Metric 
+            imgUrl="/assets/icons/eye.svg"
+            alt="views"
+            value={views}
+            title=" views"
+            textStyles="small-medium text-dark-400_light800"
+        />
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import QuestionCard from "@/components/cards/QuestionCard";
 type HomePageQuestions = {
   _id: string;
   title: string;
-  tags: { _id: number; name: string }[];
+  tags: { _id: string; name: string }[];
   author: { _id: string; name: string; picture: string };
   upvotes: string;
   views: string;
@@ -23,7 +23,7 @@ const questions: HomePageQuestions = [
   {
     _id: "1",
     title: "How to open a link in a new Tab in NextJS?",
-    tags: [{ _id: 1, name: "next.js" }],
+    tags: [{ _id: "1", name: "next.js" }],
     author: { _id: "1", name: "John doe", picture: "john.jpg" },
     upvotes: "14",
     views: "35",
@@ -34,8 +34,8 @@ const questions: HomePageQuestions = [
     _id: "2",
     title: "How to center a div?",
     tags: [
-      { _id: 1, name: "css" },
-      { _id: 2, name: "html" },
+      { _id: "1", name: "css" },
+      { _id: "2", name: "html" },
     ],
     author: { _id: "2", name: "alex fi", picture: "alex.jpg" },
     upvotes: "9",
