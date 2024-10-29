@@ -33,7 +33,7 @@ const QuestionCard = ({
             {String(createdAt)}
           </span>
           <Link href={`/question/${_id}`}>
-            <h3 className="sm:h3-semibold base-semibold text-dark-200_light900 line-clamp-1 flex-1">{title}</h3>
+            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1">{title}</h3>
           </Link>
         </div>
         {/* if signed in add edit delete actions  */}
@@ -46,25 +46,34 @@ const QuestionCard = ({
 
       <div className="flex-between flex-wrap gap-3 mt-6 w-full">
         <Metric 
+            imgUrl="/assets/icons/avatar.svg"
+            alt="author"
+            value={author.name}
+            title=" - asked 1 hour ago "
+            isAuthor
+            href={`/profile/${author._id}`}
+            textStyles="body-medium text-dark400_light700"
+        />
+        <Metric 
             imgUrl="/assets/icons/like.svg"
             alt="upvote"
             value={upvotes}
             title=" Votes"
-            textStyles="small-medium text-dark-400_light800"
+            textStyles="small-medium text-dark400_light800"
         />
         <Metric 
             imgUrl="/assets/icons/message.svg"
             alt="answers"
             value={answers.length}
             title=" Votes"
-            textStyles="small-medium text-dark-400_light800"
+            textStyles="small-medium text-dark400_light800"
         />
         <Metric 
             imgUrl="/assets/icons/eye.svg"
             alt="views"
             value={views}
             title=" views"
-            textStyles="small-medium text-dark-400_light800"
+            textStyles="small-medium text-dark400_light800"
         />
       </div>
     </div>
