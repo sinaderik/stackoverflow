@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input";
 import { QuestionsSchema } from "@/lib/validations";
 import { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { Badge } from "../ui/badge";
+import Image from "next/image";
 
 const Question = () => {
   const editorRef = useRef(null);
@@ -35,6 +37,33 @@ const Question = () => {
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  const handleInputKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    field: any
+  ) => {
+    if (e.key === "Enter" && field.name === "tags") {
+      e.preventDefault();
+      const tagInput = e.target as HTMLInputElement;
+      const tagValue = tagInput.value.trim(); //remove white spaces
+      if (tagValue !== "") {
+        if (tagValue.length > 15) {
+          return form.setError("tags", {
+            type: "required",
+            message: "Tags must be less than 15 characters .",
+          });
+        }
+
+        if (!field.value.includes(tagValue as never)) {
+          form.setValue("tags", [...field.value, tagValue]);
+          tagInput.value = "";
+          form.clearErrors("tags");
+        }
+      } else {
+        form.trigger();
+      }
+    }
+  };
 
   return (
     <Form {...form}>
@@ -76,9 +105,9 @@ const Question = () => {
               <FormControl className="mt-3.5">
                 <Editor
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
-                  onInit={(_evt, editor)=>{
+                  onInit={(_evt, editor) => {
                     // @ts-ignore
-                    (editorRef.current = editor)
+                    editorRef.current = editor;
                   }}
                   initialValue=""
                   init={{
@@ -127,11 +156,31 @@ const Question = () => {
                 Tags<span className="text-primary-500 ml-1">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
-                <Input
-                  placeholder="Add tags..."
-                  className="no-focus paragraph-regular background-light900_dark300 text-dark300_light700 light-border-2 border min-h-[56px]"
-                  {...field}
-                />
+                <>
+                  <Input
+                    placeholder="Add tags..."
+                    className="no-focus paragraph-regular background-light900_dark300 text-dark300_light700 light-border-2 border min-h-[56px]"
+                    onKeyDown={(e) => handleInputKeyDown(e, field)}
+                  />
+                  {field.value.length > 0 && (
+                    <div className="flex-start mt-2.5 gap-2.5">
+                      {field.value.map((tag: any) => (
+                        <Badge className="subtle-medium background-light800_dark300 text-light400_dark500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize"
+                        onClick={(e)=>handleTagRemove(e,field)}
+                        >
+                          {tag}
+                          <Image
+                            src="/assets/icons/close.svg"
+                            height={12}
+                            width={12}
+                            alt="close"
+                            className="cursor-pointer object-contain invert-0 dark:invert"
+                          />
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
                 Add up to 3 tags to describe what your question is about. You
