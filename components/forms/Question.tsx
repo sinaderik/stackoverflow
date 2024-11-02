@@ -19,11 +19,13 @@ import { QuestionsSchema } from "@/lib/validations";
 
 
 const Question = () => {
-  // 1. Define your form.
+
   const form = useForm<z.infer<typeof QuestionsSchema>>({
     resolver: zodResolver(QuestionsSchema),
     defaultValues: {
       title: "",
+      explanation:"",
+      tags:[],
     },
   });
 
@@ -36,20 +38,22 @@ const Question = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col w-full gap-10">
         <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Title</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
+            <FormItem className="flex flex-col w-full">
+              <FormLabel className="paragraph-semibold text-dark400_light800">Title<span className="text-primary-500 ml-1">*</span></FormLabel>
+              <FormControl className="mt-3.5">
+                <Input
+                className="no-focus paragraph-regular background-light700_dark300 text-dark300_light700 light-border-2 border min-h-[56px]"
+                {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
+              <FormDescription className="body-regular mt-2.5 text-light-500">
+                Be specific and imagine you're asking a question to another person
               </FormDescription>
-              <FormMessage />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
