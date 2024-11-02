@@ -14,12 +14,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { QuestionsSchema } from "@/lib/validations";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 
 const Question = () => {
+  const type: any = "create";
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const editorRef = useRef(null);
 
   const form = useForm<z.infer<typeof QuestionsSchema>>({
@@ -31,11 +33,18 @@ const Question = () => {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof QuestionsSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+      setIsSubmitting(true);
+    try{
+        // make an api call to the backend to create a question 
+        // contain all form data
+
+        // navigate to the home page
+    }catch{
+        // error handling
+    }finally{
+        setIsSubmitting(false);
+    }
   }
 
   const handleInputKeyDown = (
@@ -44,7 +53,7 @@ const Question = () => {
   ) => {
     if (e.key === "Enter" && field.name === "tags") {
       e.preventDefault();
-   
+
       const tagInput = e.target as HTMLInputElement;
       const tagValue = tagInput.value.trim(); //remove white spaces
       if (tagValue !== "") {
@@ -54,11 +63,11 @@ const Question = () => {
             message: "Tags must be less than 15 characters .",
           });
         }
-        if(field.value.length>2){
-            return form.setError("tags", {
-                type: "required",
-                message: "You must not exceed 3 tags.",
-              }); 
+        if (field.value.length > 2) {
+          return form.setError("tags", {
+            type: "required",
+            message: "You must not exceed 3 tags.",
+          });
         }
 
         if (!field.value.includes(tagValue as never)) {
@@ -177,8 +186,8 @@ const Question = () => {
                     <div className="flex-start mt-2.5 gap-2.5">
                       {field.value.map((tag: any) => (
                         <Badge
-                        key={tag} 
-                        className="transition-colors focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 dark:border-slate-800 dark:focus:ring-slate-300 border-transparent bg-slate-900 shadow hover:bg-slate-900/80 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/80 subtle-medium background-light800_dark300 text-light400_light500 rounded-md border-none px-4 py-2 uppercase cursor-pointer"
+                          key={tag}
+                          className="transition-colors focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 dark:border-slate-800 dark:focus:ring-slate-300 border-transparent bg-slate-900 shadow hover:bg-slate-900/80 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/80 subtle-medium background-light800_dark300 text-light400_light500 rounded-md border-none px-4 py-2 uppercase cursor-pointer"
                           onClick={() => handleTagRemove(tag, field)}
                         >
                           {tag}
@@ -203,7 +212,17 @@ const Question = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button
+          className="primary-gradient !text-light-900 w-fit"
+          disabled={isSubmitting}
+          type="submit"
+        >
+          {isSubmitting ? (
+            <>{type === "edit" ? "Editing..." : "Posting..."}</>
+          ) : (
+            <>{type === "edit" ? "Edit" : "Ask a question"}</>
+          )}
+        </Button>
       </form>
     </Form>
   );
