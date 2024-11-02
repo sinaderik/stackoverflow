@@ -44,6 +44,7 @@ const Question = () => {
   ) => {
     if (e.key === "Enter" && field.name === "tags") {
       e.preventDefault();
+   
       const tagInput = e.target as HTMLInputElement;
       const tagValue = tagInput.value.trim(); //remove white spaces
       if (tagValue !== "") {
@@ -52,6 +53,12 @@ const Question = () => {
             type: "required",
             message: "Tags must be less than 15 characters .",
           });
+        }
+        if(field.value.length>2){
+            return form.setError("tags", {
+                type: "required",
+                message: "You must not exceed 3 tags.",
+              }); 
         }
 
         if (!field.value.includes(tagValue as never)) {
@@ -64,11 +71,10 @@ const Question = () => {
       }
     }
   };
-
-  const handleTagRemove=(tag:string,field:any)=>{
-    const newTags=field.value.filter((t:string)=>t !== tag)
-    form.setValue("tags",newTags)
-  }
+  const handleTagRemove = (tag: string, field: any) => {
+    const newTags = field.value.filter((t: string) => t !== tag);
+    form.setValue("tags", newTags);
+  };
 
   return (
     <Form {...form}>
@@ -170,8 +176,10 @@ const Question = () => {
                   {field.value.length > 0 && (
                     <div className="flex-start mt-2.5 gap-2.5">
                       {field.value.map((tag: any) => (
-                        <Badge className="subtle-medium background-light800_dark300 text-light400_dark500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize"
-                        onClick={()=>handleTagRemove(tag,field)}
+                        <Badge
+                        key={tag} 
+                        className="transition-colors focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 dark:border-slate-800 dark:focus:ring-slate-300 border-transparent bg-slate-900 shadow hover:bg-slate-900/80 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/80 subtle-medium background-light800_dark300 text-light400_light500 rounded-md border-none px-4 py-2 uppercase cursor-pointer"
+                          onClick={() => handleTagRemove(tag, field)}
                         >
                           {tag}
                           <Image
@@ -179,7 +187,7 @@ const Question = () => {
                             height={12}
                             width={12}
                             alt="close"
-                            className="cursor-pointer object-contain invert-0 dark:invert"
+                            className="cursor-pointer object-contain invert-0 dark:invert ml-2"
                           />
                         </Badge>
                       ))}
