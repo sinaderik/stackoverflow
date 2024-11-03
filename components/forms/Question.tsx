@@ -40,6 +40,11 @@ const Question = () => {
         // make an api call to the backend to create a question 
         // contain all form data
         await createQuestion()
+        form.reset({
+          title: "",
+          explanation: "",
+          tags: [],
+        });
         // navigate to the home page
     }catch{
         // error handling
@@ -130,6 +135,8 @@ const Question = () => {
                     // @ts-ignore
                     editorRef.current = editor;
                   }}
+                  onBlur={field.onBlur}
+                  onEditorChange={(content)=>field.onChange(content)}
                   initialValue=""
                   init={{
                     height: 350,
