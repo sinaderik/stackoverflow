@@ -39,7 +39,7 @@ const Question = () => {
     try{
         // make an api call to the backend to create a question 
         // contain all form data
-        await createQuestion()
+        await createQuestion({})
         form.reset({
           title: "",
           explanation: "",
