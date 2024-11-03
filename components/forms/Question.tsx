@@ -18,6 +18,7 @@ import { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createQuestion } from "@/lib/actions/question.action";
 
 const Question = () => {
   const type: any = "create";
@@ -33,12 +34,12 @@ const Question = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
       setIsSubmitting(true);
     try{
         // make an api call to the backend to create a question 
         // contain all form data
-
+        await createQuestion()
         // navigate to the home page
     }catch{
         // error handling
