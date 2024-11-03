@@ -18,11 +18,19 @@ import { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createQuestion } from "@/lib/actions/question.action";
+import { usePathname,useRouter } from "next/navigation";
 
-const Question = () => {
+type Props={
+  mongoUserId:string,
+}
+const Question = ({mongoUserId}:Props) => {
   const type: any = "create";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const editorRef = useRef(null);
+  const router=useRouter();
+  const pathname=usePathname();
+
 
   const form = useForm<z.infer<typeof QuestionsSchema>>({
     resolver: zodResolver(QuestionsSchema),
@@ -33,13 +41,20 @@ const Question = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
       setIsSubmitting(true);
     try{
         // make an api call to the backend to create a question 
         // contain all form data
-
+        await createQuestion({
+          title:values.title,
+          content:values.explanation,
+          tags:values.tags,
+          author:JSON.parse(mongoUserId)
+        })
+        
         // navigate to the home page
+        router.push("/")
     }catch{
         // error handling
     }finally{
@@ -129,6 +144,8 @@ const Question = () => {
                     // @ts-ignore
                     editorRef.current = editor;
                   }}
+                  onBlur={field.onBlur}
+                  onEditorChange={(content)=>field.onChange(content)}
                   initialValue=""
                   init={{
                     height: 350,
