@@ -1,12 +1,26 @@
 "use server";
 
 import Question from "@/database/question.model";
-import { connectToDatabase } from "../mongoose";
 import Tag from "@/database/tag.model";
+import User from "@/database/user.model";
+import { CreateQuestionParams, GetQuestionsParams } from "./shared.types";
+import { connectToDatabase } from "../mongoose";
 
+export const getQuestions = async (params: GetQuestionsParams) => {
+  try {
+    connectToDatabase();
 
+    const questions = await Question.find({})
+      .populate({ path: "tags", model: Tag })
+      .populate({ path: "author", model: User });
+    return questions
+  } catch (error) {
+    console.log("operation failed ", error);
+    throw error;
+  }
+};
 
-export const createQuestion = async (params: any) => {
+export const createQuestion = async (params: CreateQuestionParams) => {
   try {
     connectToDatabase();
 

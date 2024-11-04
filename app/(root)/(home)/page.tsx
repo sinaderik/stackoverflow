@@ -7,6 +7,7 @@ import { HomePageFilters } from "@/constants/filter";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/cards/QuestionCard";
+import { getQuestions } from "@/lib/actions/question.action";
 
 type HomePageQuestions = {
   _id: string;
@@ -19,33 +20,11 @@ type HomePageQuestions = {
   createdAt: Date;
 }[];
 
-const questions: HomePageQuestions = [
-  {
-    _id: "1",
-    title: "How to open a link in a new Tab in NextJS?",
-    tags: [{ _id: "1", name: "next.js" }],
-    author: { _id: "1", name: "John doe", picture: "john.jpg" },
-    upvotes: 1500000,
-    views: 2000000,
-    answers: [],
-    createdAt: new Date("2024-10-01T12:00:00.000Z"),
-  },
-  {
-    _id: "2",
-    title: "How to center a div?",
-    tags: [
-      { _id: "1", name: "css" },
-      { _id: "2", name: "html" },
-    ],
-    author: { _id: "2", name: "alex fi", picture: "alex.jpg" },
-    upvotes: 70000,
-    views: 140000,
-    answers: [],
-    createdAt: new Date("2024-09number-01T12:00:00.000Z"),
-  },
-];
 
-const Home = () => {
+
+const Home = async() => {
+  const questions=await getQuestions({})
+ 
   return (
     <>
       <div className="flex flex-col-reverse justify-between sm:flex-row sm:items-center gap-4 w-full">
