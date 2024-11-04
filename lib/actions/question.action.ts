@@ -5,6 +5,7 @@ import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
 import { CreateQuestionParams, GetQuestionsParams } from "./shared.types";
 import { connectToDatabase } from "../mongoose";
+import { revalidatePath } from "next/cache";
 
 export const getQuestions = async (params: GetQuestionsParams) => {
   try {
@@ -48,5 +49,6 @@ export const createQuestion = async (params: CreateQuestionParams) => {
     // create an interaction record for the user's ask-question action
 
     // increment the auther's reputeation by +5 point for creating the question
+    revalidatePath(path)
   } catch (error) {}
 };
