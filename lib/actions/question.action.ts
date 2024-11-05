@@ -51,5 +51,7 @@ export const createQuestion = async (params: CreateQuestionParams) => {
 
     // increment the auther's reputeation by +5 point for creating the question
     revalidatePath(path)
-  } catch (error) {}
+  } catch (error) {
+    // error handeling
+  }
 };
