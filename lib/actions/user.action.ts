@@ -6,30 +6,36 @@ import { CreateUserParams, DeleteUserParams, UpdateUserParams } from "./shared.t
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
 
-export const createUser = async (userData:CreateUserParams) => {
+export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabase();
-    const newUser=await User.create(userData)
+
+    const newUser = await User.create(userData);
+
     return newUser;
-
   } catch (error) {
-    console.log(error)
-    throw error
+    console.log(error);
+    throw error;
   }
-};
+}
 
-export const updateUser = async (params:UpdateUserParams) => {
+export async function updateUser(params: UpdateUserParams) {
   try {
     connectToDatabase();
-    const {clerkId,updateData,path}=params
-    await User.findOneAndUpdate({clerkId},updateData,{new:true})
-    
-    revalidatePath(path)
+
+    const { clerkId, updateData, path } = params;
+
+    await User.findOneAndUpdate({ clerkId }, updateData, {
+      new: true,
+    });
+
+    revalidatePath(path);
   } catch (error) {
-    console.log(error)
-    throw error
+    console.log(error);
+    throw error;
   }
-};
+}
+
 export const deleteUser = async (params:DeleteUserParams) => {
   try {
     connectToDatabase();

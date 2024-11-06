@@ -5,12 +5,12 @@ const isPublicRoute = createRouteMatcher([
   "/sign-up(.*)",
   "/",
   "/api/webhooks",
-  "/question/:id",
-  "/tags",
-  "/tags/:id",
-  "/profile/:id",
-  "/community",
-  "/jobs",
+  'question/:id',
+  '/tags',
+  '/tags/:id',
+  '/profile/:id',
+  '/community',
+  '/jobs'
 
 ]);
 // Define ignored routes
