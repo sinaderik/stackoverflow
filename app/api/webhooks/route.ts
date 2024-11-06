@@ -93,7 +93,7 @@ export async function POST(req: Request) {
     const deletedUser = await deleteUser({
       clerkId: id!,
     })
-
+    // test commit
     return NextResponse.json({ message: 'OK', user: deletedUser})
   }
  
